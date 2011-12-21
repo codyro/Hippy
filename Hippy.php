@@ -242,6 +242,12 @@ class Hippy {
 	{
 		$instance = self::getInstance();
 		$instance->queue[] = $msg; //Add message to queue
+
+        if ((count($instance->queue) >= $instance->settings['queue_limit']) && (isset($instance->settings['queue_limit'])))
+        {
+            self::go();
+            $instance->queue = array();
+        }
 	}
 	
 	/**
