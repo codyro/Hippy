@@ -349,6 +349,16 @@ class Hippy {
         //Return JSON
         return $response;
     }
+
+    public static function flush_queue()
+    {
+        $instance = self::getInstance();
+        
+        if (count($instance->queue) > 0)
+        {
+            self::go();
+        }
+    }
 }
 
 /**
